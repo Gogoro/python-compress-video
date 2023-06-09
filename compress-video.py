@@ -1,4 +1,5 @@
 import os
+import platform
 import ffmpeg
 import subprocess
 import sys
@@ -38,7 +39,11 @@ print('Files to compress: ', files_to_compress)
 for file_to_compress in files_to_compress:
     print('Compressing: ', file_to_compress)
     # Compression command
-    ffmpeg.input(basepath + file_to_compress).output(basepath + 'compressed-' + file_to_compress, **{'c:v': 'h264_videotoolbox', 'c:a': 'aac', 'b:v': '6800k'}).run()
+    # check if os is windows or mac
+    if platform.system() == 'Windows':
+        ffmpeg.input(file_to_compress).output(file_to_compress[:-4] + 'compressed.mp4', **{'c:v': 'h264_nvenc', 'c:a': 'aac', 'b:v': '6800k'}).run()
+    else:
+        ffmpeg.input(file_to_compress).output(file_to_compress[:-4] + 'compressed.mp4', **{'c:v': 'h264_videotoolbox', 'c:a': 'aac', 'b:v': '6800k'}).run()
     # Delete the original file
     os.remove(basepath + file_to_compress)
     # Rename the compressed file to the original name
