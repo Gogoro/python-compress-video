@@ -20,4 +20,4 @@ But if the process is successful, you will loose your original file.
 ### Running the command
 1. Install `ffmpeg`
 2. Instal dependencies `python3 pip install -r requirements.txt`
-2. Run compression with `python3 compress-video.py test/` // Change `test/` to your base path.
+2. Run compression with `python3 compress-video.py .../test/` // Change `.../test/` to be the absolute path

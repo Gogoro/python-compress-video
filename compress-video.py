@@ -11,20 +11,20 @@ if len(sys.argv) == 1:
 print('Compressing videos in: ', sys.argv[1])
 basepath = sys.argv[1]
 
-# List all files in a directory using os.listdir
-files_in_basepath = os.listdir(basepath)
+# list all files in a directory and subdirectories using os.walk
+files_in_basepath = [os.path.join(root, file) for root, dirs, files in os.walk(basepath) for file in files]
 
 # Filter out all files that are not video files
 # Filter out all files that are already compressed
 # Filter out all files that has a compressed version
 files_in_basepath = [file for file in files_in_basepath if file.endswith('.mp4') and not file.startswith('compressed-') and not 'compressed-' + file in files_in_basepath]
-
 # Fill this variable with files that we are going to compress 
 files_to_compress = []
 
 # Check if file is not compressed and is a video file
 for file_in_basepath in files_in_basepath:
-    cmd = ['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=bit_rate', '-of', 'default=noprint_wrappers=1:nokey=1', basepath + file_in_basepath]
+    # Get the bitrate of the file
+    cmd = ['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=bit_rate', '-of', 'default=noprint_wrappers=1:nokey=1', file_in_basepath]
     process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     output = process.communicate()[0]
     print(output)
