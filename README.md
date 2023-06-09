@@ -1,23 +1,20 @@
 # Python Compress Video
 
-## Gaol
-I have 5TB+ worth of videos stored on my NAS that are from livestreams I've done and YouTube videos.
-
-Compressing all of these videos using Media Encoder is going to take a while and be cluncy. Also, I want this to just happen automatically whenever I save a recording.
-
-Therefore I'm going to make the following functionality:
-- [x] Distinguish between compressed and not compressed files
-- [x] Set root folder, and automatically compress ALL videos in sub folders of this
-- [x] Have good naming, so I can visually see what's been compressed. // Dropped this. Program detects if it needs to be compressed, that's enough.
-
 ## Usage
 
-### Warning
-This script runs through all the sub folders to the base folder you define and finds `.mp4` files and compresses them. After it's done running, it deletes the original and replaces that with the new file. 
-So, if the process failes. It should not delete the original. 
-But if the process is successful, you will loose your original file.
+### ⚠️ Warning
+This script operates by traversing all subfolders from the defined base folder, identifying `.mp4` files, and compressing them. Once the compression process is complete, the original files are deleted and replaced with the compressed versions. However, if the process encounters any errors, it will not delete the original files.
 
-### Running the command
-1. Install `ffmpeg`
-2. Instal dependencies `python3 pip install -r requirements.txt`
-2. Run compression with `python3 compress-video.py .../test/` // Change `.../test/` to be the absolute path
+### Running the Command
+Follow the steps below to utilize this video compression automation tool:
+
+1. Install `ffmpeg`.
+2. Install the required dependencies by running the following command: `python3 -m pip install -r requirements.txt`
+3. Execute the compression process by running the following command: `python3 compress-video.py /path/to/your/videos/`
+Replace `/path/to/your/videos/` with the absolute path to the directory containing the videos you want to compress.
+
+## Contribution
+Contributions to this project are welcome. If you encounter any issues or have suggestions for improvement, please feel free to open an issue or submit a pull request.
+
+## License
+This project is licensed under the MIT License.
