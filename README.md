@@ -1,17 +1,28 @@
 # Python Compress Video
 
-## Usage
+This small script takes `.mp4` videos located in the target folder and sub folders, and compresses them into ~6800kb/s videos. 
 
-### ⚠️ Warning
-This script operates by traversing all subfolders from the defined base folder, identifying `.mp4` files, and compressing them. Once the compression process is complete, the original files are deleted and replaced with the compressed versions. However, if the process encounters any errors, it will not delete the original files.
+Warning: This scripts replaces your original files with the compressed version. So do some tests before you run it on your important files. 
 
-### Running the Command
-Follow the steps below to utilize this video compression automation tool:
+## Requirements
+- [Install ffmpeg](https://www.ffmpeg.org/)
+- Install python dependencies `pip install -r requirements.txt`
 
-1. Install `ffmpeg`.
-2. Install the required dependencies by running the following command: `python3 -m pip install -r requirements.txt`
-3. Execute the compression process by running the following command: `python3 compress-video.py /path/to/your/videos/`
-Replace `/path/to/your/videos/` with the absolute path to the directory containing the videos you want to compress.
+## Running the Command
+
+``` bash
+$ python3 compress-video.py /path/to/your/videos/
+```
+
+Change the path to be the root folder of where you want to compress videos.
+
+## Potential future improvements
+Currently, the script is just doing a spesific task for me. If there is need or interest, I can add more features. 
+
+Some potential features:
+- [ ] Set target bitrate from cmd
+- [ ] Relative basepath
+- [ ] Support more file types
 
 ## Contribution
 Contributions to this project are welcome. If you encounter any issues or have suggestions for improvement, please feel free to open an issue or submit a pull request.
